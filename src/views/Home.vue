@@ -7,13 +7,15 @@
           <h1>TD - N Lateration</h1>
         </div>
 
-        <div class="d-flex flex-row justify-content-between ">
+        <div class="d-flex flex-row flex-wrap justify-content-between ">
 
 
-          <div class="m-4">
+          <div class="m-4 d-flex flex-row gap-2">
             <button @click="resetCam()" class="btn btn-primary">Reset cam</button>
+            <button @click="computePosition()" class="btn btn-primary">Compute pos</button>
+            {{ computedPosition ? `Position computed !` : '' }}
           </div>
-          <!-- Checkboxes for controlling display -->
+          <!-- Checkboxes for controlling display 
           <div class="d-flex  flex-row  my-4">
 
 
@@ -37,7 +39,7 @@
                 Display controllers
               </label>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
 
@@ -65,7 +67,7 @@ const opacityEnabled = ref(true);
 const displayBin = ref(true);
 const displayControllers = ref(true);
 const openState = ref(false);
-
+const computedPosition = ref(null);
 
 const threeContainerComp = ref(null)
 
@@ -73,7 +75,10 @@ const resetCam = () => {
   if(threeContainerComp.value) threeContainerComp.value.resetCamera()
 } 
   
-
+const computePosition = () => {
+  if(threeContainerComp.value) computedPosition.value = threeContainerComp.value.computePosition()
+  console.log(threeContainerComp.value.computePosition())
+} 
 
 </script>
 
